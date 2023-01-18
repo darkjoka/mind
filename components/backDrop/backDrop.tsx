@@ -13,8 +13,8 @@ export default function BackDrop() {
         for (let row = 5; row < window.innerWidth; row += 20) {
           for (let column = 5; column < window.innerHeight; column += 20) {
             canvasContext.beginPath();
-            canvasContext.fillStyle = "rgba(220,220,220,.7)";
-            canvasContext.arc(row, column, 2, 0, Math.PI * 2, false);
+            canvasContext.fillStyle = "rgba(220,220,220,.5)";
+            canvasContext.arc(row, column, 1, 0, Math.PI * 2, false);
             canvasContext.fill();
           }
         }
@@ -22,5 +22,5 @@ export default function BackDrop() {
     }
   }, []);
 
-  return <canvas ref={canvasRef} className=""></canvas>;
+  return <canvas ref={canvasRef} className="absolute -z-10"></canvas>;
 }
