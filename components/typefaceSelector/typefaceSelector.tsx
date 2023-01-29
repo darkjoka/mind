@@ -1,68 +1,58 @@
 import React from "react";
 import * as Select from "@radix-ui/react-select";
-import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "@radix-ui/react-icons";
+import { CheckIcon, ChevronRightIcon, ChevronDownIcon, ChevronUpIcon } from "@radix-ui/react-icons";
+
+
+const typefaces = [
+  {
+    type: "sans serif",
+    supported: ["Arial", "Century Gothic", "Helvetica", "Impact", "Tahoma", "Trebuchet MS"],
+  },
+  {
+    type: "serif",
+    supported: ["EB Garamond", "Merriweather","Noto Serif", "Source Serif Pro"],
+  },
+  {
+    type: "mono",
+    supported: ["Courier", "Roboto Mono", "Inconsolata", "Source Code Pro"]
+  }
+]
 
 export default function TypefaceSelector() {
   return (
     <Select.Root>
-      <Select.Trigger className="flex items-center justify-center border rounded px-2 py-1" aria-label="Food">
-        <Select.Value placeholder="Select a fruit…" />
-        <Select.Icon className="">
+    <Select.Trigger className="flex justify-between items-center rounded bg-white w-32" aria-label="Food">
+      <Select.Value placeholder="Default font"/>
+      <Select.Icon className="SelectIcon">
+        <ChevronRightIcon />
+      </Select.Icon>
+    </Select.Trigger>
+    <Select.Portal>
+      <Select.Content className="overflow-hidden bg-white rounded shadow-sm border">
+        <Select.ScrollUpButton className="flex items-center justify-center h-6 bg-white text-violet-900">
+          <ChevronUpIcon />
+        </Select.ScrollUpButton>
+        <Select.Viewport className="p-1">
+          {
+            typefaces.map(({type, supported})=> <Select.Group key={type}><Select.Label>{type}</Select.Label>{
+              supported.map((value)=><SelectItem key={value} value={value.toLowerCase()}>{value}</SelectItem>)
+            }</Select.Group>)
+          }
+        </Select.Viewport>
+        <Select.ScrollDownButton className="flex items-center justify-center h-6 bg-white text-violet-900">
           <ChevronDownIcon />
-        </Select.Icon>
-      </Select.Trigger>
-      <Select.Portal>
-        <Select.Content className="overflow-hidde rounded bg-white">
-          <Select.ScrollUpButton className="flex items-center justify-center bg-white">
-            <ChevronUpIcon />
-          </Select.ScrollUpButton>
-          <Select.Viewport className="p-1">
-            <Select.Group>
-              <Select.Label className="SelectLabel">Fruits</Select.Label>
-              <SelectItem value="apple">Apple</SelectItem>
-              <SelectItem value="banana">Banana</SelectItem>
-              <SelectItem value="blueberry">Blueberry</SelectItem>
-              <SelectItem value="grapes">Grapes</SelectItem>
-              <SelectItem value="pineapple">Pineapple</SelectItem>
-            </Select.Group>
-
-            <Select.Separator className="h-1 m-1 bg-black" />
-
-            <Select.Group>
-              <Select.Label className="SelectLabel">Vegetables</Select.Label>
-              <SelectItem value="aubergine">Aubergine</SelectItem>
-              <SelectItem value="broccoli">Broccoli</SelectItem>
-              <SelectItem value="carrot" disabled>
-                Carrot
-              </SelectItem>
-              <SelectItem value="courgette">Courgette</SelectItem>
-              <SelectItem value="leek">leek</SelectItem>
-            </Select.Group>
-
-            <Select.Separator className="h-1 m-1" />
-
-            <Select.Group>
-              <Select.Label className="SelectLabel">Meat</Select.Label>
-              <SelectItem value="beef">Beef</SelectItem>
-              <SelectItem value="chicken">Chicken</SelectItem>
-              <SelectItem value="lamb">Lamb</SelectItem>
-              <SelectItem value="pork">Pork</SelectItem>
-            </Select.Group>
-          </Select.Viewport>
-          <Select.ScrollDownButton className="flex items-center justify-center bg-white text-black">
-            <ChevronDownIcon />
-          </Select.ScrollDownButton>
-        </Select.Content>
-      </Select.Portal>
-    </Select.Root>
-  );
+        </Select.ScrollDownButton>
+      </Select.Content>
+    </Select.Portal>
+  </Select.Root>
+); 
 }
 
 const SelectItem = React.forwardRef(({ children, ...props }: any, forwardedRef) => {
   return (
-    <Select.Item className="" {...props} ref={forwardedRef as any}>
+    <Select.Item className="rounded flex items-center h-6 py-0 px-9 data-[disabled]:text-gray-300 data-[disabled]:pointer-events-none data-[highlighted]:outline-none data-[highlighted]:text-violet-800 data-[highlighted]:bg-violet-200 data-[highlighted]:cursor-pointer" {...props} ref={forwardedRef as any}>
       <Select.ItemText>{children}</Select.ItemText>
-      <Select.ItemIndicator className="SelectItemIndicator">
+      <Select.ItemIndicator className="absolute left-0 w-6 flex items-center justify-center">
         <CheckIcon />
       </Select.ItemIndicator>
     </Select.Item>
