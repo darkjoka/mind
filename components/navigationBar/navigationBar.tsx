@@ -5,9 +5,9 @@ import { TbArrowBackUp, TbArrowForwardUp } from "react-icons/tb";
 
 export default function NavigationBar() {
   return (
-    <div className="flex justify-between p-4 items-center">
+    <div className="flex items-center justify-between p-4">
       <div className="flex items-center space-x-6">
-        <button className="hover:bg-gray-200 rounded p-2">
+        <button className="rounded p-2 hover:bg-gray-200">
           <BsChevronLeft className="text-slate-600" />
         </button>
         <div>
@@ -18,23 +18,23 @@ export default function NavigationBar() {
           </p>
         </div>
       </div>
-      <div className="flex space-x-2 h-10">
-        <div className="flex rounded-md bg-white  text-xl h-full items-center border p-0">
-          <button className="rounded-l-md hover:bg-gray-100 h-full w-full px-4 m-0">
+      <div className="flex h-10 space-x-2">
+        <div className="flex h-full items-center  rounded-md border bg-white p-0 text-xl">
+          <button className="m-0 h-full w-full rounded-l-md px-4 hover:bg-gray-100">
             <TbArrowBackUp />
           </button>
-          <span className="w-[2px] bg-gray-100 h-8" />
-          <button className="rounded-r-md text-slate-500 hover:bg-gray-100 h-full px-4 m-0">
+          <span className="h-8 w-[2px] bg-gray-100" />
+          <button className="m-0 h-full rounded-r-md px-4 text-slate-500 hover:bg-gray-100">
             <TbArrowForwardUp />
           </button>
         </div>
-        <button className="rounded-md bg-white rouned-md text-xl px-5 hover:bg-gray-100 border">
+        <button className="rouned-md rounded-md border bg-white px-5 text-xl hover:bg-gray-100">
           <IoPersonCircleOutline />
         </button>
-        <button className="rounded-md bg-white rouned-md text-xl px-5 hover:bg-gray-100 border">
+        <button className="rouned-md rounded-md border bg-white px-5 text-xl hover:bg-gray-100">
           <HiOutlineArrowUpOnSquare />
         </button>
-        <button className="rounded-md bg-white rouned-md text-xl px-5 hover:bg-gray-100 border">
+        <button className="rouned-md rounded-md border bg-white px-5 text-xl hover:bg-gray-100">
           <BsThreeDots />
         </button>
       </div>
